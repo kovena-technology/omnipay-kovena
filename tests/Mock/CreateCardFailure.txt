@@ -1,0 +1,12 @@
+HTTP/1.1 405 Method Not Allowed
+Content-Type: application/json
+
+{
+	"success": false,
+	"status": 405,
+	"data": [],
+	"message": "TOKENIZATION_NOT_FOUND",
+	"friendly_message": "Tokenization not found.",
+	"error": 301,
+	"correlation_id": "9e6bb1ac91e840ceae79565f470e9ce6"
+}

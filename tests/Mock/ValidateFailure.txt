@@ -1,0 +1,18 @@
+HTTP/1.1 405 Method Not Allowed
+Content-Type: application/json
+
+{
+	"success": false,
+	"status": 405,
+	"data": [],
+	"message": "The given data was invalid.",
+	"friendly_message": "The given data was invalid.",
+	"error": 405,
+	"errors": {
+		"amount": "The amount field is required.",
+		"currency": "The currency field is required.",
+		"reference": "The reference field is required.",
+		"description": "The description field is required."
+	},
+	"correlation_id": "9e756068cfda43739c0650c702f6f72d"
+}

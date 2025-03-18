@@ -1,0 +1,18 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+	"success": true,
+	"status": 200,
+	"data": {
+		"charge_id": "kovena_charge_id",
+		"merchant_id": "abf982b1898843c88099279929625823",
+		"vault_token": "kovena_vault_token",
+		"reference": "KOVENA_REF_323",
+		"transaction_id": "kovena_transaction_Id"
+	},
+	"message": "",
+	"friendly_message": "",
+	"error": "0",
+	"correlation_id": "9e755ff2d3ee4992ad94d546084a8717"
+}
