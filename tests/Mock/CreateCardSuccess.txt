@@ -1,0 +1,31 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+	"success": true,
+	"status": 200,
+	"data": {
+		"vault_token": "19f768fd31b5da3e4397bcb825633e46",
+		"vault_info": {
+			"Type": "credit",
+			"Brand": "MCI",
+			"Usage": "consumer",
+			"Issuer": "DATATRANS",
+			"Country": "CH",
+			"CardName": "TEST",
+			"CardholderEmail": "",
+			"ExpireYear": "2025",
+			"ExpireMonth": "12",
+			"CardNumberBin": "540400",
+			"CardNumberLast4": "0001",
+			"PaymentMethod": "ECA",
+			"RemainViewNumber": 3,
+			"RemainViewCcv": 0
+		},
+		"hasCVV": false
+	},
+	"message": "",
+	"friendly_message": "",
+	"error": 0,
+	"correlation_id": "9e67b8adb9ef46ef8edeec191a1d17a1"
+}

@@ -1,0 +1,39 @@
+{
+    "name": "kovena/omnipay-kovena",
+    "description": "Kovena driver for Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "kovena",
+        "payment",
+        "purchase"
+    ],
+    "homepage": "https://github.com/kovena/omnipay-kovena",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "trung nguyen",
+            "email": "trung@kovena.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": { "Omnipay\\Kovena\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "~3.0",
+        "php-http/guzzle6-adapter": "^1.1",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "omnipay/tests": "~3.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}

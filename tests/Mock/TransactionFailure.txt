@@ -1,0 +1,18 @@
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{
+	"success": false,
+	"status": 400,
+	"data": {
+        "charge_id": "kovena_charge_id",
+        "merchant_id": "abf982b1898843c88099279929625823",
+        "vault_token": "kovena_vault_token",
+        "reference": "KOVENA_REF_323",
+        "transaction_id": "kovena_transaction_Id"
+    },
+	"message": "TRANSACTION_FAILED",
+	"friendly_message": "Transaction reject by psp",
+	"error": 506,
+	"correlation_id": "9e6bb1ac91e840ceae79565f470e9ce6"
+}
