@@ -2,10 +2,10 @@
 
 ## Installation
 
-Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `omnipay/stripe` with Composer:
+Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `omnipay/kovena` with Composer:
 
 ```
-composer require league/omnipay kovena/omnipay-kovena
+composer require league/omnipay:^3 kovena/omnipay-kovena
 ```
 ## Basic Usage
 

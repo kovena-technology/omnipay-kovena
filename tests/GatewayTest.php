@@ -31,70 +31,50 @@ class GatewayTest extends GatewayTestCase
 		];
 	}
 
-	public function testCreateToken()
+	public function testCreateCard()
 	{
-		$request = $this->gateway->createToken(array('customer' => 'cus_foo'));
+		$request = $this->gateway->createCard(array('description' => 'foo'));
 
-		$this->assertInstanceOf('Omnipay\Stripe\Message\CreateTokenRequest', $request);
-		$params = $request->getParameters();
-		$this->assertSame('cus_foo', $params['customer']);
+		$this->assertInstanceOf('Omnipay\Kovena\Message\CreateCardRequest', $request);
+		$this->assertSame('foo', $request->getDescription());
 	}
 
-	
-	
-	public function testFlow()
+	public function testAuthorize()
 	{
-		$gateway = Omnipay::create('Kovena');
-		$gateway->setApiKey('kovena_secret_key');
+		$request = $this->gateway->authorize(array('amount' => '10.00'));
 
-        $params = [
-            "card_number" => 4111111111111111,
-            "card_ccv" => 123,
-            "expire_month" => 12,
-            "expire_year" => 2030,
-            "card_name" => "card holder name",
-        ];
-        $tokenize = $gateway->tokenize($params)->send();
-        $tokenData = $tokenize->getResponseData();
-        $vaultToken = $tokenData->vault_token;
-//        $vaultToken = "dc829200ef6fcbe13ad3dee0ee2";
-
-		$formData = [
-            "merchant_id" => 4,
-            "vault_token" => $vaultToken,
-            "amount" => 10,
-            "currency" => "AUD",
-            "reference" => "KOVENA_REFERENCE_ID",
-            "description" => "Kovena Hotel Name",
-            "is_sending_email" => true,
-            "booking_info" => [
-                "booking_date" => "2025-03-01",
-                "booking_ref" => "KOVENA_BOOKING_REF",
-                "check_in_date" => "2025-03-02",
-                "check_out_date" => "2025-03-03",
-                "customer_name" => "lenonard w cordiner",
-                "customer_email" => "testing@kovena.com",
-                "customer_phone" => "string",
-                "customer_country" => "string",
-                "surcharge_amount" => 0,
-                "original_transaction_amount" => 65.71,
-                "original_transaction_currency" => "USD"
-            ],
-//            'charge_id' => '9e597b1bf4be2d6f8b3a2275ed',
-//            'transaction_id' => '9e597b469c5581a2a6117ab72'
-        ];
-		$response = $gateway->purchase($formData)->send();
-
-		if ($response->isRedirect()) {
-			$response->redirect();
-		} elseif ($response->isSuccessful()) {
-			$data = $response->getResponseData();  //to get response data
-//            $data = $response->getResponse(); // to get full response
-		} else {
-			echo $response->getMessage(); // to get Friendly message
-//			echo $response->getErrorMessage(); // to get Error message
-//			echo $response->getSuggestMessage(); // to get suggestion action
-		}
+		$this->assertInstanceOf('Omnipay\Kovena\Message\AuthorizeRequest', $request);
+		$this->assertSame('10.00', $request->getAmount());
 	}
-    
+
+	public function testCapture()
+	{
+		$request = $this->gateway->capture(array('amount' => '10.00'));
+
+		$this->assertInstanceOf('Omnipay\Kovena\Message\CaptureRequest', $request);
+		$this->assertSame('10.00', $request->getAmount());
+	}
+
+	public function testPurchase()
+	{
+		$request = $this->gateway->purchase(array('amount' => '10.00'));
+
+		$this->assertInstanceOf('Omnipay\Kovena\Message\PurchaseRequest', $request);
+		$this->assertSame('10.00', $request->getAmount());
+	}
+
+	public function testRefund()
+	{
+		$request = $this->gateway->refund(array('amount' => '10.00'));
+
+		$this->assertInstanceOf('Omnipay\Kovena\Message\RefundRequest', $request);
+		$this->assertSame('10.00', $request->getAmount());
+	}
+
+	public function testVoid()
+	{
+		$request = $this->gateway->void();
+
+		$this->assertInstanceOf('Omnipay\Kovena\Message\VoidRequest', $request);
+	}
 }
