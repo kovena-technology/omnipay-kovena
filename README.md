@@ -32,6 +32,106 @@ Register to place your hotel on our top priority list during our fast-approachin
 
 Read more on Kovena Payment Solution [here](https://kovena.com/).
 
+## Examples
+
+### Initialize Gateway
+
+```php
+use Omnipay\Omnipay;
+
+// Create a gateway for the Kovena Gateway
+$gateway = Omnipay::create('Kovena');
+
+// Initialize the gateway
+$gateway->initialize([
+    'apiKey' => 'your-api-key',
+    'merchantId' => 'your-merchant-id',
+    'testMode' => true
+]);
+```
+
+### Authorize a Payment
+
+```php
+$response = $gateway->authorize([
+    'amount' => '10.00',
+    'currency' => 'AUD',
+    'cardReference' => 'vault-token',
+    'reference' => 'merchant_ref_001',
+    'description' => 'Make purchase',
+    'booking_info' => [
+        'booking_date' => "2025-03-18",
+        'booking_ref' => 'merchant_booking_ref_001',
+        'check_in_date' => '2025-03-20',
+        'check_out_date' => '2025-03-21',
+        'customer_name' => 'Customer Name',
+        'customer_email' => 'customer@example.com',
+        'customer_phone' => '1234567890',
+        'customer_country' => 'US',
+        'surcharge_amount' => '0',
+        'original_transaction_amount' => '10.00',
+        'original_transaction_currency' => 'AUD',
+    ]
+])->send();
+
+if ($response->isSuccessful()) {
+    echo "Charge Reference: " . $response->getChargeReference() . "\n";
+    echo "Transaction Reference: " . $response->getTransactionReference() . "\n";
+}
+```
+
+### Capture an Authorized Payment
+
+```php
+$response = $gateway->capture([
+    'amount' => '10.00',
+    'chargeReference' => 'charge-reference-from-authorize',
+    'booking_info' => [
+        // Include booking information as shown in authorize example
+    ]
+])->send();
+```
+
+### Purchase (Authorize + Capture)
+
+```php
+$response = $gateway->purchase([
+    'amount' => '10.00',
+    'currency' => 'AUD',
+    'cardReference' => 'vault-token',
+    'reference' => 'merchant_ref_001',
+    'description' => 'Make purchase',
+    'booking_info' => [
+        // Include booking information as shown in authorize example
+    ]
+])->send();
+```
+
+### Refund a Transaction
+
+```php
+$response = $gateway->refund([
+    'amount' => '10.00',
+    'chargeReference' => 'original-charge-reference',
+    'transactionReference' => 'original-transaction-reference',
+    'booking_info' => [
+        // Include booking information as shown in authorize example
+    ]
+])->send();
+```
+
+### Response Handling
+
+```php
+if ($response->isSuccessful()) {
+    // Transaction was successful
+    $chargeReference = $response->getChargeReference();
+    $transactionReference = $response->getTransactionReference();
+} else {
+    // Transaction failed
+    echo $response->getMessage();
+}
+```
 ## Support
 
 If you are having general issues with Omnipay, we suggest posting on
