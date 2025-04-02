@@ -11,14 +11,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	use HasGatewayParameters;
 	use HasBookingParameters;
 	
-	protected $liveHost = 'https://gateway.kovena.com/v1';
-	protected $testHost = 'https://staging-gateway.kovena.com/v1';
-
-
-	public function getHost(){
-		return $this->getTestMode() ? $this->testHost : $this->liveHost;
-	}
-	
 	abstract public function getEndpoint();
 	
     public function getHttpMethod()
