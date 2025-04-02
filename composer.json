@@ -10,7 +10,7 @@
         "payment",
         "purchase"
     ],
-    "homepage": "https://github.com/kovena/omnipay-kovena",
+    "homepage": "https://github.com/kovena-technology/omnipay-kovena",
     "type": "library",
     "license": "MIT",
     "authors": [
