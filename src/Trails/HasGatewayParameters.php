@@ -10,6 +10,13 @@ use Omnipay\Kovena\Message\Response;
 
 trait HasGatewayParameters
 {
+	protected $liveHost = 'https://gateway.kovena.com/v1';
+	protected $testHost = 'https://staging-gateway.kovena.com/v1';
+
+	public function getHost()
+	{
+		return $this->getTestMode() ? $this->testHost : $this->liveHost;
+	}
 
 	/**
 	 * Get the gateway API Key.
